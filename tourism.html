@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Туризм</title>
+</head>
+<body>
+    <div class="content">
+        <h2>Туризм</h2>
+        <h2>Туризм</h2>
+    </div>
+
+
+    <div class="wrap">
+        <div class="element-big green"></div>
+
+        <div class="element-animation x">
+          <span>Воды аршанов</span>
+        </div>
+        <div class="element-animation">
+            <span><img src="images/water.jpg">></span>
+        </div>
+        <div class="element-animation">
+            <span><img src="images/water1.jpg">></span>
+        </div>
+
+        <div class="element-big red"></div>
+
+        <div class="element-animation -x">
+            <span>Элемент, который появляется</span>
+        </div>
+
+        <div class="element-big red"></div>
+    </div>
+
+</body>
+</html>
+
+
+
+<style>
+    
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+
+body{
+    display: flex;
+    background:  
+        linear-gradient(rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.8)),
+        #000 url(images/tur1.jpg);
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: 100%;
+    justify-content: center;
+    
+}
+
+img{
+
+    width: 700px;
+    height: 700px;
+}
+
+
+.content h2 {
+  font-size: 8em;
+  position: absolute;
+
+  margin: 45px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+
+  transform: translate(0%, -50%);
+}
+
+.content h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #03a9f4;
+}
+
+.content h2:nth-child(2) {
+  color: #03a9f4;
+  animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+
+
+
+
+
+
+
+/* .green {
+  background-color: green;
+}
+.red {
+  background-color: red;;
+} */
+/* Задаем высоту большим блокам, чтобы у нас на странице получится скролл */
+.element-big  {
+  width: 100%;
+  height: 800px;
+}
+.element-animation {
+  margin: 2rem 0;
+  font-size: 3rem;
+  
+  /* Скроем элемент в начальном состоянии */
+  opacity: 0;
+}
+
+
+.x{
+    transform: translateX(50%);
+}
+
+.-x{
+    transform: translateX(-50%);
+}
+
+
+
+
+
+.element-animation.element-show {
+  opacity: 1;
+  transition: all 1s;
+  transform: translateX(0%);
+}
+
+
+</style>
+
+
+
+<script>
+
+
+
+function onEntry(entry) {
+  entry.forEach(change => {
+    if (change.isIntersecting) {
+      change.target.classList.add('element-show');
+    }
+  });
+}
+let options = { threshold: [0.5] };
+let observer = new IntersectionObserver(onEntry, options);
+let elements = document.querySelectorAll('.element-animation');
+for (let elm of elements) {
+  observer.observe(elm);
+}
+
+
+
+
+</script>
