@@ -1,0 +1,186 @@
+<!DOCTYPE html> 
+
+<html>
+	<meta charset="utf-8"></meta>
+	<head><title>Виртуальная экскурсия: Алханай</title></head> 
+	<body>
+		<!--
+		История
+		География
+		Флора фауна
+		Туризм
+		-->
+		<div class="en" id="first">
+			<div class="center"><h2 class="text la">История</h2></div>
+		</div>
+		<div class="en" id="second">
+			<div class="center"><h2 class="text ra">География</h2></div>
+		</div>
+		<div class="en" id="third">
+			<div class="center"><h2 class="text la">Флора фауна</h2></div>
+		</div>
+		<div class="en" id="fourth">
+			<div class="center"><h2 class="text ra">Туризм</h2></div>
+		</div>
+		<div id="title">
+			<div class="center"><h2 class="text">Алханай</h2></div>
+		</div>
+	</body>
+</html>
+
+<style>
+	html, body {
+		margin: 3px;
+		padding: 3px;
+		background-color: black;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.en {
+		opacity: 0;
+		display: block;
+		background-color: #AAAAAA;
+		text-align: center;
+		margin-right: 4px;
+		margin-bottom: 4px;
+		width: calc(50% - 8px);
+		height: calc(50% - 8px);
+		transition: 0.75s;
+		float: left;
+		font: oblique 16px serif;
+		background-size: 80%;
+	}
+
+	.ra {
+		margin-right: 20px;
+		text-align: right;
+	}
+
+	.la {
+		margin-left: 20px;
+		text-align: left;
+	}
+
+	#title {
+		opacity: 0;
+		position: fixed;
+		border: 4px solid black;
+		text-align: center;
+		display: block;
+		width: 40%;
+		height: 50%;
+		top: 25%;
+		left: 30%;
+		background-color: #aaaaaa;
+		transition: 0.75s;
+	}
+
+	#first {
+		background: no-repeat top/140% url("images/history.jpg");
+		background-color: #d4d1d1;
+	}
+
+	#second {
+		background: no-repeat center/140% url("images/geography.jpg");
+		background-color: #ead8b4;
+	}
+
+	#third {
+		background: no-repeat top/140% url("images/flora_fauna.jpg");
+		color: #666666;
+		background-color: #ffffff;
+	}
+
+	#fourth {
+		background: no-repeat center/140% url("images/tourism.jpg");
+		color: #000;
+		background-color: #ffffff;
+	}
+
+	#title {
+		background: no-repeat center/140% url("images/alkhanai.jpg");
+		color: #666666;
+		background-color: black;
+	}
+
+	#first:hover, #second:hover, #third:hover, #fourth:hover, #title:hover {
+		background-size: 150%;
+		background-color: black;
+		color: #757575;
+	}
+</style>
+
+<script>
+	var el1 = document.getElementById("first")
+	var el2 = document.getElementById("second")
+	var el3 = document.getElementById("third")
+	var el4 = document.getElementById("fourth")
+	var cen = document.getElementById("title")
+
+	var all = [
+		[el1, "history.html"],
+		[el2, "geography.html"],
+		[el3, "flora_and_fauna.html"],
+		[el4, "tourism.html"],
+	]
+
+	function animate(el) {
+		for(i of all) {
+			if(i[1] != el[1]) {
+				console.log(el[0], i[0])
+				if(i[0].parentNode != null) {
+					i[0].style.opacity = 0;
+				}
+			}
+		}
+
+		cen.style.opacity = 0;
+
+		setTimeout(() => {
+			for(i of all) {
+				if(i[1] != el[1]) {
+					if(i[0].parentNode != null) {
+						i[0].parentNode.removeChild(i[0])
+					}
+				}
+			}
+			
+			//getElementsByTagName("html")[0].style.padding = "3px"
+
+			el[0].getElementsByClassName("center")[0].getElementsByClassName("text")[0].classList.remove("ra")
+			el[0].getElementsByClassName("center")[0].getElementsByClassName("text")[0].classList.add("la")
+			el[0].style.width = "100%"
+			el[0].style.height = "100%"
+		}, 1000)
+
+		setTimeout(()=>{
+			document.location.href = el[1]
+		}, 3000)
+	}
+
+
+
+
+	for(el of all){
+		(function(url) {
+			el[0].onclick = ((a)=>{ 
+				return ()=>{ animate(a) }
+			})(el)
+		})(el[1]);
+	}
+
+	var els = document.getElementsByClassName("en")
+	for(mk=0; mk<els.length; mk++) {
+		(function(mk){
+			setTimeout(()=>{
+				els[mk].style.opacity = 1;
+			},500+(750*mk))
+		})(mk);
+	}
+
+	setTimeout(()=>{
+		document.getElementById("title").style.opacity = 1;
+	}, 3000)
+</script>
