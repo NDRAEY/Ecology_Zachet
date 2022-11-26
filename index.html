@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Загрузка...</title>
+		<title>Тур по Алханаю</title>
 	</head>
 	<body>
 		<div id="container">
@@ -10,7 +10,8 @@
 				<div style="font-size: 28px">
 					ПРОЕКТ ПО<br>
 					ОСНОВАМ<br>
-					ПРИРОДО-<br>ПОЛЬЗОВАНИЯ
+					ПРИРОДО-<br>
+					ПОЛЬЗОВАНИЯ
 				</div>
 			</div>
 			<div class="cube_element" id="right">Алханай</div>
@@ -21,7 +22,10 @@
 					Начать
 				</div>
 			</div>
-			<div class="cube_element" id="front">BORIKMM and NDRAEY</div>
+			<div class="cube_element" id="front">
+				BORIKMM<br>
+				NDRAEY
+			</div>
 		</div>
 	</body>
 </html>
@@ -42,7 +46,11 @@
 	}
 
 	html {
-		background-color: #010101;
+		background: url("images/alkhanai_bg.jpg");
+		background-size: 100%;
+		background-repeat: space;
+		background-position-x: center;
+		background-position-y: -100px;
 	}
 
 	body {
@@ -131,3 +139,9 @@
 	}
 
 </style>
+
+<script>
+	document.getElementById("start").onclick = () => {
+		document.location.href = "menu.html"
+	}
+</script>
