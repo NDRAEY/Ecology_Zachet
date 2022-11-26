@@ -3,11 +3,11 @@
 	<meta charset="utf-8"></meta>
     <body>
         <div id="wrapbox">
-            <div id="text">
+            <b><div id="text">
             Loading...
-            </div>
-    </div>
-</body>
+            </div></b>
+        </div>
+    </body>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
@@ -42,7 +42,9 @@
 
     body {
         overflow: hidden;
-        background: url("images/alkhanai_hist.jpg") 90%;
+        background: url("images/alkhanai_hist.jpg") 100%;
+
+        transition: 1s;
     }
 </style>
 
@@ -53,13 +55,40 @@
         "Поток паломников в энергетические места ежегодно возрастает. Их поход по каменным тропам сравнивается с духовным развитием человечества, его физического очищения. Многие зоны парка открыты для посещения. На его территории работает научная организация Агинского университета. На ней действует интересный кабинет с процедурами, применяемыми тибетской медициной.",
         "Старинные сеансы массажа, рекомендации лекарственных средств из местных растений, пульсовая методика определения заболеваний. Все они являются доступными. Количество цветных ленточек, даров, оставленных путешественниками по местным обычаям, разноцветным ковром развевается в священном месте. Примечательно, что на Алханае в 1991 году присутствовал, глава буддийской религии Далай-Лама XIV Данзан Жамсо и освятил это место. В честь памятного события был воздвигнут символический памятник – ступа.",       
     ]
-    var pos = 0;
+    var pos = 0
+    var box = document.getElementById("text")
 
-    document.getElementById("wrapbox").style.opacity = 1;
+    var switchtext = () => {
+        if(pos >= texts.length) {
+            document.location.href = "menu.html"
+            return;
+        }
+        box.innerText = texts[pos]
+        pos++
+    }
 
-    var box = document.getElementById("text");
+    var images = [
+        "images/alkhanai.jpg",
+        "images/alkhanai_2.jpg",
+        "images/alkhanai_bg.jpg",
+        "images/alkhanai_hist.jpg",
+    ]
 
+    var impos = 0;
+        
+    document.getElementById("wrapbox").style.opacity = 1
+    
     box.innerText = texts[pos]
+
+    document.getElementById("wrapbox").onclick = switchtext;
+    document.getElementById("text").onclick = switchtext;
+
+    setInterval(() => {
+        document.body.style.background = "url('"+images[impos % images.length]+"')"
+        document.body.style.backgroundSize = "120%"
+        document.body.style.backgroundPosition = "bottom"
+        impos++;
+    }, 5000);
 </script>
 
 </html>

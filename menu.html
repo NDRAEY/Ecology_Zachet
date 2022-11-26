@@ -113,6 +113,10 @@
 	var el4 = document.getElementById("fourth")
 	var cen = document.getElementById("title")
 
+	var _timer = setTimeout(()=>{
+		document.getElementById("title").style.opacity = 1;
+	}, 3000);
+
 	var all = [
 		[el1, "history.html"],
 		[el2, "geography.html"],
@@ -121,6 +125,7 @@
 	]
 
 	function animate(el) {
+		clearInterval(_timer)
 		for(i of all) {
 			if(i[1] != el[1]) {
 				console.log(el[0], i[0])
@@ -173,8 +178,4 @@
 			},500+(750*mk))
 		})(mk);
 	}
-
-	setTimeout(()=>{
-		document.getElementById("title").style.opacity = 1;
-	}, 3000)
 </script>
