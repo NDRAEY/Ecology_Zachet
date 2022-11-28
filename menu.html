@@ -1,29 +1,46 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 
 <html>
-	<meta charset="utf-8"></meta>
-	<head><title>Виртуальная экскурсия: Алханай</title></head> 
-	<body>
-		<div class="en" id="first">
-			<div class="center"><h2 class="text la">История</h2></div>
+<meta charset="utf-8">
+</meta>
+
+<head>
+	<title>Виртуальная экскурсия: Алханай</title>
+</head>
+
+<body>
+	<div class="en" id="first">
+		<div class="center">
+			<h2 class="text la">История</h2>
 		</div>
-		<div class="en" id="second">
-			<div class="center"><h2 class="text ra">География</h2></div>
+	</div>
+	<div class="en" id="second">
+		<div class="center">
+			<h2 class="text ra">География</h2>
 		</div>
-		<div class="en" id="third">
-			<div class="center"><h2 class="text la">Флора фауна</h2></div>
+	</div>
+	<div class="en" id="third">
+		<div class="center">
+			<h2 class="text la">Флора фауна</h2>
 		</div>
-		<div class="en" id="fourth">
-			<div class="center"><h2 class="text ra">Туризм</h2></div>
+	</div>
+	<div class="en" id="fourth">
+		<div class="center">
+			<h2 class="text ra">Туризм</h2>
 		</div>
-		<div id="title">
-			<div class="center"><h2 class="text">Алханай</h2></div>
+	</div>
+	<div id="title">
+		<div class="center">
+			<h2 class="text">Алханай</h2>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>
 
 <style>
-	html, body {
+	html,
+	body {
 		margin: 3px;
 		padding: 3px;
 		background-color: black;
@@ -99,7 +116,11 @@
 		background-color: black;
 	}
 
-	#first:hover, #second:hover, #third:hover, #fourth:hover, #title:hover {
+	#first:hover:not(.no-hover),
+	#second:hover:not(.no-hover),
+	#third:hover:not(.no-hover),
+	#fourth:hover:not(.no-hover),
+	#title:hover:not(.no-hover) {
 		background-size: 150%;
 		background-color: black;
 		color: #757575;
@@ -113,9 +134,9 @@
 	var el4 = document.getElementById("fourth")
 	var cen = document.getElementById("title")
 
-	var _timer = setTimeout(()=>{
+	var _timer = setTimeout(() => {
 		document.getElementById("title").style.opacity = 1;
-	}, 3000);
+	}, 2000);
 
 	var all = [
 		[el1, "history.html"],
@@ -126,56 +147,63 @@
 
 	function animate(el) {
 		clearInterval(_timer)
-		for(i of all) {
-			if(i[1] != el[1]) {
-				console.log(el[0], i[0])
-				if(i[0].parentNode != null) {
+		for (i of all) {
+			if (i[1] != el[1]) {
+				// console.log(el[0], i[0])
+				if (i[0].parentNode != null) {
 					i[0].style.opacity = 0;
 				}
 			}
 		}
 
+		el[0].classList.add("no-hover")
+
 		cen.style.opacity = 0;
 
-		setTimeout(() => {
-			for(i of all) {
-				if(i[1] != el[1]) {
-					if(i[0].parentNode != null) {
-						i[0].parentNode.removeChild(i[0])
-					}
-				}
-			}
+		for (i in all) {
 			
+			((ka, ke) => {
+					if (ke != el[1]) {
+					if (ka.parentNode != null) {
+						setTimeout(() => {
+							ka.parentNode.removeChild(ka)
+						}, 800)
+					}
+					}
+				})(all[i][0], all[i][1]);
+		}
+
+		setTimeout(() => {
 			//getElementsByTagName("html")[0].style.padding = "3px"
 
 			el[0].getElementsByClassName("center")[0].getElementsByClassName("text")[0].classList.remove("ra")
 			el[0].getElementsByClassName("center")[0].getElementsByClassName("text")[0].classList.add("la")
 			el[0].style.width = "100%"
 			el[0].style.height = "100%"
-		}, 1000)
+		}, 1500)
 
-		setTimeout(()=>{
+		setTimeout(() => {
 			document.location.href = el[1]
-		}, 3000)
+		}, 4000)
 	}
 
 
 
 
-	for(el of all){
-		(function(url) {
-			el[0].onclick = ((a)=>{ 
-				return ()=>{ animate(a) }
+	for (el of all) {
+		(function (url) {
+			el[0].onclick = ((a) => {
+				return () => { animate(a) }
 			})(el)
 		})(el[1]);
 	}
 
 	var els = document.getElementsByClassName("en")
-	for(mk=0; mk<els.length; mk++) {
-		(function(mk){
-			setTimeout(()=>{
+	for (mk = 0; mk < els.length; mk++) {
+		(function (mk) {
+			setTimeout(() => {
 				els[mk].style.opacity = 1;
-			},500+(750*mk))
+			}, 500 + (350 * mk))
 		})(mk);
 	}
 </script>

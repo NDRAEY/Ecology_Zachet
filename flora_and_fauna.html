@@ -1,12 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document2</title>
-</head>
-<body>
+<html>
+	<meta charset="utf-8"></meta>
+    <body>
+        <div id="wrapbox">
+            <b><div id="text">
+            Loading...
+            </div></b>
+        </div>
+    </body>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    #text {
+        padding: 15px;
+		font-family: 'Comfortaa', cursive;
+		font-size: 24px;
+
+        color: rgba(0, 0, 0, .9);
+    }
+
+    #wrapbox {
+        width: 75%;
+        height: 75%;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translateX(-50%) translateY(-50%);
+        
+        background: rgba(128, 128, 128, .5);
+
+        opacity: 0;
+        transition: 2s;
+    }
+
+    body {
+        overflow: hidden;
+
+        transition: 1s;
+    }
+</style>
+
+<script>
+    var texts = [
+        "Территория покрыта лиственными и смешанными лесами. В них находятся сосновые, кедровые, березовые, дубовые рощи. Частым соседом зарослей являются участки курумов (россыпей из камней). Рядом с ними вырастают плантации сопровождающих растений: маньчжурская бузина, сибирские барбарис и рябина. Густые поляны лука алтайского, чистотела большого, щитовника пахучего. По всей площади найдено 960 видов растений. Среди них папоротниковые, плауновидные. Покрыто и голосемянные типы. Около 20 видов входят в списки Красной книги и относятся к охраняемым растениям.",
+
+        "Ландшафтное разнообразие создало условия для роста 130 типов мхов. Почти 180 видов растений используются народными целителями на протяжении многих столетий. Это родиола розовая, шлемник байкальский, лофант китайский, ревень компактный, астрагал. Многие растений изображены на картинах знаменитых художников (например, Венерин башмачёк). Вид величественного папоротника наполняет окружающее пространство необыкновенным ароматом свежести и напоминает о временах, сохраненных им с периода первых растений, появившихся на нашей планете.",
+
+        "Особенность географического положения парка заключается в появлении условий для жизни разных видов животных. Густые леса, степи, водоемы, климат позволяют жить, размножаться представителям европейских, дальневосточных, маньчжурских видов. На охраняемой территории зарегистрировано 120 типов позвоночных, 4 класса земноводных, 30 млекопитающих,4 пресмыкающихся, 95 птиц. Описано 160 видов насекомых, 17 рыб, 2 амфибий, 4 рептилий. В озерах, реках резвятся 18 типов рыб.",
+
+        "Среди них плавают таймень, хариус, ленок. По лесам, горам прогуливаются бурые медведи, кабарги, косули. Лоси, изюбри, волки, лисы, горностаи. Жизненное пространство рядом с россыпями камней освоила алтайская пищуха из отряда зайцеобразных. Ее специфический свист слышится рядом с туристическими маршрутами по каменным тропинкам. Жизнь, повадки всех видов животных постоянно изучаются специалистами парка."
+    ]
+    var pos = 0
+    var box = document.getElementById("text")
+
+    var switchtext = () => {
+        pos++
+        if(pos >= texts.length) {
+            document.location.href = "menu.html"
+            return;
+        }
+        box.innerText = texts[pos]
+    }
+
+    var images = [
+        "images/HoMyAcHoK.webp",
+        "images/Plant.jpg",
+        "images/ETO_NE_YA_PISAL_ETO_SLOVO_V_VKONTAKTE.jpg",
+        "images/StrashnyTsvetok.webp"
+    ]
+
+    var impos = 0;
+        
+    document.getElementById("wrapbox").style.opacity = 1
     
-</body>
+    box.innerText = texts[pos]
+
+    document.getElementById("wrapbox").onclick = switchtext;
+    //document.getElementById("text").onclick = switchtext;
+
+    document.body.style.background = "url('"+images[impos % images.length]+"')"
+    document.body.style.backgroundSize = "120%"
+    document.body.style.backgroundPosition = "center"     
+
+    setInterval(() => {
+        document.body.style.background = "url('"+images[impos % images.length]+"')"
+        document.body.style.backgroundSize = "120%"
+        document.body.style.backgroundPosition = "center"
+        impos++;
+    }, 5000);
+</script>
+
 </html>

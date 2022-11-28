@@ -59,12 +59,12 @@
     var box = document.getElementById("text")
 
     var switchtext = () => {
+        pos++
         if(pos >= texts.length) {
             document.location.href = "menu.html"
             return;
         }
         box.innerText = texts[pos]
-        pos++
     }
 
     var images = [
@@ -81,7 +81,7 @@
     box.innerText = texts[pos]
 
     document.getElementById("wrapbox").onclick = switchtext;
-    document.getElementById("text").onclick = switchtext;
+    //document.getElementById("text").onclick = switchtext;
 
     setInterval(() => {
         document.body.style.background = "url('"+images[impos % images.length]+"')"

@@ -5,6 +5,14 @@
 		<title>Тур по Алханаю</title>
 	</head>
 	<body>
+		<div id="animation">
+			<span class="anim">Андрей Павленко</span>
+			<span class="anim">Валерий Налабордин</span>
+			<span class="anim">Проект</span>
+			<span class="anim">По</span>
+			<span class="anim"><center>Основам <br>природопользования</center></span>
+			<span id="anim2"><center>Тур<br>по Алханаю</center></span>
+		</div>
 		<div id="container">
 			<div class="cube_element" id="left">
 				<div style="font-size: 28px">
@@ -46,11 +54,12 @@
 	}
 
 	html {
-		background: url("images/alkhanai_bg.jpg");
+		background: #000000;
+		/* background: url("images/alkhanai_bg.jpg");
 		background-size: 100%;
 		background-repeat: space;
 		background-position-x: center;
-		background-position-y: -100px;
+		background-position-y: -100px; */
 	}
 
 	body {
@@ -138,10 +147,84 @@
 		background-color: rgba(156, 156, 156, .3);
 	}
 
+	#container {
+		opacity: 0;
+	}
+
+	.anim, #anim2 {
+		color: #dfffff;
+		
+		opacity: 0;
+		transition: 2s;
+		position: absolute;
+
+		top: 50%;
+		left: 50%;
+
+		transform: translateX(-50%) translateY(-50%);
+		font-size: 36px;
+	}
+
+	#anim2 {
+		transition: 4s;
+	}
 </style>
 
 <script>
 	document.getElementById("start").onclick = () => {
 		document.location.href = "menu.html"
 	}
+
+	var cx = document.body.getBoundingClientRect().width/2
+	var cy = document.body.getBoundingClientRect().height/2
+
+	var anims = document.getElementsByClassName("anim")
+
+	for(i in anims) {
+		if(anims[i].style) {
+			((a, b) => {
+				// console.log((parseInt(b)+1))
+				setTimeout(()=>{
+					console.log("show", a)
+					a.style.opacity = 1
+					a.style.fontSize = "56px"
+					setTimeout(()=>{
+						console.log("hide", a)
+						a.style.opacity = 0
+						
+					}, 2000)
+				}, 3000 * (parseInt(b)+1))
+			})(anims[i], i)
+		}
+	}
+
+	var finanim = document.getElementById("anim2")
+	
+	setTimeout(() => {
+		finanim.style.opacity = 1
+		finanim.style.fontSize = "72px"
+	}, 3000 * (anims.length+2))
+
+
+	setTimeout(() => {
+		finanim.style.transition = "1s"
+		finanim.style.opacity = 0
+		finanim.style.fontSize = "124px"
+	}, (3000 * (anims.length+2))+4000)
+
+	setTimeout(() => {
+		var del = document.getElementById("animation")
+		del.parentNode.removeChild(del)
+		
+		var html = document.getElementsByTagName("html")[0]
+
+		document.getElementById("container").style.transition = "2s";
+		document.getElementById("container").style.opacity = 1;
+		html.style.transition = "2s";
+		html.style.backgroundImage = "url('images/alkhanai_bg.jpg')";
+		html.style.backgroundSize = "100%";
+		html.style.backgroundRepeat = "space";
+		html.style.backgroundPositionX = "center";
+		html.style.backgroundPositionY = "-100px";
+	}, (3000 * (anims.length+2))+4500)
 </script>
