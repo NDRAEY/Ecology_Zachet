@@ -7,10 +7,6 @@
     <title>География</title>
 </head>
 <body>
-    <div class="content">
-        <h2>География</h2>
-        <h2>География</h2>
-    </div>
 
 
     <div class="wrap">
@@ -19,7 +15,7 @@
         <div class="element-animation">
             <span><img src="images/карта.jpg"></span>
         </div>
-
+        <p><a href="menu.html">Назад</a></p>
     </div>
 
 </body>
@@ -31,6 +27,25 @@
     
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 @import url("RubikDistressed-Regular.ttf");
+
+
+
+p{
+  text-align: center;
+}
+
+
+a{
+  size: 20px;
+	color: rgb(22, 212, 89);
+	text-decoration: none;
+}
+
+
+
+
+
+
 
 body{
     display: flex;
@@ -56,58 +71,6 @@ span{
 }
 
 
-.content h2 {
-  font-size: 8em;
-  position: absolute;
-
-  margin: 45px;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "RubikDistressed-Regular", sans-serif;
-
-  transform: translate(25%, -50%);
-}
-
-.content h2:nth-child(1) {
-  color: transparent;
-  -webkit-text-stroke: 2px #000000;
-}
-
-.content h2:nth-child(2) {
-  color: #efc300;
-  animation: animate 4s ease-in-out infinite;
-}
-
-@keyframes animate {
-  0%,
-  100% {
-    clip-path: polygon(
-      0% 45%,
-      16% 44%,
-      33% 50%,
-      54% 60%,
-      70% 61%,
-      84% 59%,
-      100% 52%,
-      100% 0%,
-      0% 0%
-    );
-  }
-
-  50% {
-    clip-path: polygon(
-      0% 60%,
-      15% 65%,
-      34% 66%,
-      51% 100%,
-      67% 100%,
-      84% 45%,
-      100% 46%,
-      100% 0%,
-      100% 80%
-    );
-  }
-}
 
 
 
